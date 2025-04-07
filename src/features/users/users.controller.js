@@ -38,7 +38,7 @@ class userController {
                 secure: true,   // Only over HTTPS
                 sameSite: "strict", // Helps prevent CSRF
             });
-
+            
             return res.status(200).json({ success: true, message: "User signed in successfully" }); // ✅ This was missing
             
 
