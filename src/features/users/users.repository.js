@@ -13,13 +13,10 @@ class userRepository{
         }catch(err){
             if(err instanceof mongoose.Error.ValidationError){
                 console.info(err.message);
-                throw new applicationError(400,err.message)
-            }else if(err.code === 11000){
-                console.log("Duplicate Key error: "+err.message);
-                throw new applicationError(409,"Email already exists");
+                throw new applicationError(409,err.message)
             }else{
                 console.log(err.message);
-                throw new applicationError(500,"Internal server er")
+                throw new applicationError(500,err.message)
             }
 
         }
