@@ -8,7 +8,7 @@ const userModel=mongoose.model("users",userSchema);
 class userRepository{
     static signUp=async(name,email,password)=>{
         try{
-            const user= new userModel({name,email,password});
+            const user= await new userModel({name,email,password});
             const answer=await user.save();
         }catch(err){
             if(err instanceof mongoose.Error.ValidationError){
