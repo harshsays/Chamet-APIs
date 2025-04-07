@@ -7,7 +7,7 @@ class userController {
         try{
             const {name,email,password}=req.body;
              console.log(name,email,password)
-            const hashPassword= bcrypt.hash(password);
+            const hashPassword= await bcrypt.hash(password);
             const user=await userRepository.signUp(name,email,hashPassword);
             return res.status(201).json({success:true,message:"User is successfully registered"})
         }catch(err){
