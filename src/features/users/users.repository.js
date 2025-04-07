@@ -19,7 +19,7 @@ class userRepository{
                 throw new applicationError(409,"Email already exists");
             }else{
                 console.log(err.message);
-                throw new applicationError(500,"Internal server error")
+                throw new applicationError(500,err.message)
             }
 
         }
