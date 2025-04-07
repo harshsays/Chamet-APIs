@@ -7,9 +7,13 @@ import { userRouter } from "./src/features/users/users.router.js";
 const server = express();
 
 server.use(cors());
+server.use(express.json());
 connectToMongoose();
 
+
+
 server.use("/api/user",userRouter);
+
 
 server.use((err,req,res,next)=>{
     if(err instanceof applicationError){
