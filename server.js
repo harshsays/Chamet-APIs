@@ -9,7 +9,7 @@ const server = express();
 server.use(cors());
 connectToMongoose();
 
-server.use("api/user",userRouter);
+server.use("/api/user",userRouter);
 
 server.use((err,req,res,next)=>{
     if(err instanceof applicationError){
