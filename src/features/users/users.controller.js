@@ -6,9 +6,7 @@ class userController {
     signUp=async(req,res,next)=>{
         try{
             const {name,email,password}=req.body;
-             console.log(name,email,password)
-            const hashPassword= await bcrypt.hash(password,10);
-            const user=await userRepository.signUp(name,email,hashPassword);
+            const user=await userRepository.signUp(name,email,password);
             return res.status(201).json({success:true,message:"User is successfully registered"})
         }catch(err){
             console.log("user controller Erro: "+err.message);
