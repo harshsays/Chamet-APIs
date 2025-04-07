@@ -8,7 +8,7 @@ const userModel=mongoose.model("users",userSchema);
 class userRepository{
     static signUp=async(name,email,password)=>{
         try{
-            const user= await new userModel({name,email,password});
+            const user= new userModel({name,email,password});
             const answer=await user.save();
         }catch(err){
             if(err instanceof mongoose.Error.ValidationError){
@@ -19,7 +19,7 @@ class userRepository{
                 throw new applicationError(409,"Email already exists");
             }else{
                 console.log(err.message);
-                throw new applicationError(500,err.message)
+                throw new applicationError(500,"Internal server er")
             }
 
         }
