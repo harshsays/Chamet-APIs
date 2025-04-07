@@ -1,15 +1,14 @@
 import { applicationError } from "../../error Handler/errorHandling.js";
 import { userRepository } from "./users.repository.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv";
+dotenv.config()
 class userController {
 
     signUp=async(req,res,next)=>{
         try{
             const {name,email,password}=req.body;
-            if(password.trim().length < 10){
-                return res.status(400).send({success:false,message:"password should b atleast 10 characters"})
-            }
-            
             const hashPassword= await bcrypt.hash(password,10);
             const user=await userRepository.signUp(name,email,hashPassword);
             return res.status(201).json({success:true,message:"User is successfully registered"})
@@ -21,9 +20,25 @@ class userController {
 
     signIn=async(req,res,next)=>{
         try{
+            const {email,password}=req.body;
+            const existence= await userRepository.findUserByEmail(email);
+            if(existence==null){
+                return res.status(400).json({success:false,message:"Email does'nt exist"})
+            }
+            const passwordExistence=await bcrypt.compare(password,existence.password);
+            if(passwordExistence==false){
+                return res.status(400).json({success:false,message:"Password is wrong"})
+            }
 
+            const token=jwt.sign({email:existence.email},process.env.JWT_TOKEN,{expiresIn:"1d"})
+            res.cookie("token", token, {
+                httpOnly: true, // Cannot be accessed via JS
+                secure: true,   // Only over HTTPS
+                sameSite: "strict", // Helps prevent CSRF
+            });
         }catch(err){
-
+            console.log("user cntroller Error: "+err.message);
+            next(err)
         }
     }
 

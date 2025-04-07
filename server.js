@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors"
+import cookieParser from "cookie-parser";
 import { connectToMongoose } from "./src/config/mongoose.config.js";
 import { applicationError } from "./src/error Handler/errorHandling.js";
 import { userRouter } from "./src/features/users/users.router.js";
@@ -8,6 +9,8 @@ const server = express();
 
 server.use(cors());
 server.use(express.json());
+server.use(cookieParser());
+
 server.use(express.urlencoded({"extended":true}))
 connectToMongoose();
 

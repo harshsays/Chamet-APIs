@@ -29,6 +29,16 @@ class userRepository{
 
         }
     }
+
+    static findUserByEmail=async(email)=>{
+        try{
+            const existence= await userModel.findOne({email:email});
+            return existence;
+        }catch(err){
+            console.log("Error At user Repository: "+err.message);
+            throw new Error(err.message);   
+        }
+    }
 }
 
 
