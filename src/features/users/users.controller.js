@@ -2,6 +2,7 @@ import { applicationError } from "../../error Handler/errorHandling.js";
 import { userRepository } from "./users.repository.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 dotenv.config()
 class userController {
@@ -37,6 +38,8 @@ class userController {
                 secure: true,   // Only over HTTPS
                 sameSite: "strict", // Helps prevent CSRF
             });
+
+            return res.status(200).json({ success: true, message: "User signed in successfully" }); // ✅ This was missing
             
 
         }catch(err){
