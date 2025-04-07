@@ -29,7 +29,9 @@ class UserValidations {
     body("password")
       .trim()
       .notEmpty()
-      .withMessage("Password is required"),
+      .withMessage("Password is required")
+      .isLength({min:10})
+      .withMessage("Password is Wrong express"),
 
     this.handleValidationErrors,
   ];

@@ -9,8 +9,7 @@ const server = express();
 
 server.use(cors());
 server.use(express.json());
-server.use(cookieParser());
-
+server.use(cookieParser())
 server.use(express.urlencoded({"extended":true}))
 connectToMongoose();
 
