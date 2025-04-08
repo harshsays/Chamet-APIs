@@ -19,7 +19,7 @@ server.use("/api/user",userRouter);
 
 
 server.use((err,req,res,next)=>{
-    console.infor(err.status);
+    console.info(err.status);
     if(err instanceof applicationError){
         return res.status(err.status).json({success:false,message:err.message,status:err.status})
     }
