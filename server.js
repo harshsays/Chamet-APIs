@@ -19,7 +19,9 @@ server.use("/api/user",userRouter);
 
 
 server.use((err,req,res,next)=>{
-    console.info(err.status);
+    console.log("Type of error:", err.constructor.name);
+console.log("Instanceof applicationError:", err instanceof applicationError);
+
     if(err instanceof applicationError){
         return res.status(err.status).json({success:false,message:err.message,status:err.status})
     }

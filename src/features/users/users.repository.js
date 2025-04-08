@@ -13,6 +13,7 @@ class userRepository{
         }catch(err){
             if(err instanceof mongoose.Error.ValidationError){
                 console.info(err.message);
+                console.log("Throwing error with status:", 409);
                 throw new applicationError(409,err.message)
             }else{
                 console.log(err.message);
