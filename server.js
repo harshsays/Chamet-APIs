@@ -20,7 +20,7 @@ server.use("/api/user",userRouter);
 
 server.use((err,req,res,next)=>{
     if(err instanceof applicationError){
-        return res.status(err.status).json({success:false,message:err.message,hh:"huihui"})
+        return res.status(err.status).json({success:false,message:err.message,hh:"huihui",status:{err.status}})
     }
     return res.status(500).json({success:false,message:"Internal Server Error"})
 })
