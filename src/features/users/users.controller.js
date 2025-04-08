@@ -14,6 +14,9 @@ class userController {
             const user=await userRepository.signUp(name,email,hashPassword);
             return res.status(201).json({success:true,message:"User is successfully registered"})
         }catch(err){
+            if(err instanceof applicationError){
+                throw new applicationError(err.status,err.message)
+            }
             console.log("user controller Erro: "+err.message);
             next(err);
         }
