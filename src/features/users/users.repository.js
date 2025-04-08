@@ -14,7 +14,7 @@ class userRepository{
             if (err instanceof mongoose.Error.ValidationError){
                 console.log("first");
                 throw new applicationError(409, err.message);
-            } else if (err.name === "MongoServerError" && err.code === 11000) {
+            } else if (err.cause.code === 11000) {
                 console.log("second");
                 throw new applicationError(409, "Email already exists");
             } else {
