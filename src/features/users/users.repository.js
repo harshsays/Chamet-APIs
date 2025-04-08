@@ -12,17 +12,13 @@ class userRepository{
             const answer=await user.save();
         }catch(err){
             if (err instanceof mongoose.Error.ValidationError){
-                console.log("first")
-                console.info(err.message);
+                console.log("first");
                 throw new applicationError(409, err.message);
-            } else if (err.code === 11000) {
-                // This is a duplicate key error (email already exists)
-                console.log("second")
-                console.log("Duplicate email found:", err.message);
+            } else if (err.name === "MongoServerError" && err.code === 11000) {
+                console.log("second");
                 throw new applicationError(409, "Email already exists");
             } else {
                 console.log("third");
-                console.log(err.message);
                 throw new applicationError(500, err.message);
             }
 
