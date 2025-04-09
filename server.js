@@ -12,10 +12,7 @@ import { userRouter } from "./src/features/users/users.router.js";
 
 const server = express();
 
-server.use(cors({
-    origin: "https://mytukka-d1ls.onrender.com",
-    credentials: true,               
-  }));
+server.use(cors());
 
 server.use(express.json());
 server.use(cookieParser())

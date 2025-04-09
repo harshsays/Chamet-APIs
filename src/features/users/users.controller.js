@@ -33,14 +33,7 @@ class userController {
 
             const token=jwt.sign({email:existence.email},process.env.JWT_TOKEN,{expiresIn:"1d"})
 
-            res.cookie("token", token, {
-                httpOnly: true, // Cannot be accessed via JS
-                secure: true,   // Only over HTTPS
-                sameSite: "Strict", // Helps prevent CSR
-                maxAge: 24 * 60 * 60 * 1000,
-            });
-            
-            return res.status(200).json({ success: true, message: "User signed in successfully" }); // ✅ This was missing
+            return res.status(200).json({ success: true, message: "User signed in successfully" ,token:token }); // ✅ This was missing
             
 
         }catch(err){
