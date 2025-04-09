@@ -36,7 +36,7 @@ class userController {
             res.cookie("token", token, {
                 httpOnly: true, // Cannot be accessed via JS
                 secure: true,   // Only over HTTPS
-                sameSite: "None", // Helps prevent CSR
+                sameSite: "Strict", // Helps prevent CSR
                 maxAge: 24 * 60 * 60 * 1000,
             });
             
