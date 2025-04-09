@@ -5,10 +5,15 @@ import { connectToMongoose } from "./src/config/mongoose.config.js";
 import { applicationError } from "./src/error Handler/errorHandling.js";
 import { userRouter } from "./src/features/users/users.router.js";
 
+
+// git add .
+// git commit -m "your message"
+// git push origin main
+
 const server = express();
 
 server.use(cors({
-    origin: "*",
+    origin: "https://mytukka-d1ls.onrender.com",
     credentials: true,               
   }));
 
