@@ -7,8 +7,8 @@ import { userRouter } from "./src/features/users/users.router.js";
 
 const server = express();
 
-app.use(cors({
-    origin: "http://localhost:5173", 
+server.use(cors({
+    origin: "http://localhost:5173",
     credentials: true,               
   }));
 server.use(express.json());
