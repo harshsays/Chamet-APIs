@@ -34,9 +34,9 @@ class userController {
             const token=jwt.sign({email:existence.email},process.env.JWT_TOKEN,{expiresIn:"1d"})
 
             res.cookie("token", token, {
-                
-               
-                
+                httpOnly: true, // Cannot be accessed via JS
+                secure: true,   // Only over HTTPS
+                sameSite: "strict", // Helps prevent CSR
                 maxAge: 24 * 60 * 60 * 1000,
             });
             
