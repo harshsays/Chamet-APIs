@@ -7,7 +7,10 @@ import { userRouter } from "./src/features/users/users.router.js";
 
 const server = express();
 
-server.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173", 
+    credentials: true,               
+  }));
 server.use(express.json());
 server.use(cookieParser())
 server.use(express.urlencoded({"extended":true}))
