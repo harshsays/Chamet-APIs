@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { connectToMongoose } from "./src/config/mongoose.config.js";
 import { applicationError } from "./src/error Handler/errorHandling.js";
 import { userRouter } from "./src/features/users/users.router.js";
+import { gameRouter } from "./src/features/game/game.router.js";
 
 
 // git add .
@@ -22,6 +23,7 @@ connectToMongoose();
 
 
 server.use("/api/user",userRouter);
+server.use("/api/game",gameRouter);
 
 
 server.use((err,req,res,next)=>{
