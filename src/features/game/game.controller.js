@@ -1,32 +1,28 @@
 import { GameRepository } from "./game.repository.js";
 
-
 class GameController {
-  constructor (){
-    this.value=1;
+  constructor() {
+    this.value = 1;
   }
-  givingTimer=(req,res,next)=>{
+
+  givingTimer = (req, res, next) => {
     res.setHeader('Content-Type', 'text/event-stream');
-res.setHeader('Cache-Control', 'no-cache');
-res.setHeader('Connection', 'keep-alive');
-res.setHeader('Access-Control-Allow-Origin', '*'); // You already added this ✅
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.setHeader('Access-Control-Allow-Origin', '*'); // ✅ Using wildcard without credentials is fine
 
-
-
-    
-  
-    // Send a message to the client every 5 seconds
+    // Send message every second in proper SSE format
     const interval = setInterval(() => {
       console.log('sending message');
-      res.write(String(this.value)+"\n");
+      res.write(`data: ${this.value}\n\n`); // ✅ SSE format requires "data:" and double newlines
       this.value++;
     }, 1000);
-  
+
     req.on('close', () => {
       console.log('client closed connection');
-      clearInterval(interval); // Stop sending messages after user closes connection
+      clearInterval(interval);
     });
-  }
+  };
 }
 
 export { GameController };
