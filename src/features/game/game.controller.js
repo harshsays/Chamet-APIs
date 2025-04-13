@@ -3,7 +3,7 @@ import { GameRepository } from "./game.repository.js";
 // Global counter that will be shared among all connections
 let globalCounter = 1;
 const inn=setInterval(()=>{
-  if(globalCounter==30){
+  if(globalCounter==31){
     clearInterval(inn);
     globalCounter=-1;
     setTimeout(()=>{
@@ -12,6 +12,8 @@ const inn=setInterval(()=>{
   }
   globalCounter++;
 },1000)
+
+inn();
 class GameController {
   constructor() {}
 
