@@ -36,10 +36,10 @@ class GameController {
       res.write(`data: ${globalCounter}\n\n`);
     }, 1000);
 
-    // req.on('close', () => {
-    //   console.log('client closed connection');
-    //   // clearInterval(interval);  // Stop sending messages if the client closes the connection
-    // });
+    req.on('close', () => {
+      console.log('client closed connection');
+      clearInterval(interval);  // Stop sending messages if the client closes the connection
+    });
   };
 }
 
