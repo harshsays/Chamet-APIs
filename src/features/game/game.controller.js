@@ -31,10 +31,10 @@ class GameController {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Broadcast the same value to all clients every 1 second
-    // const interval = setInterval(() => {
-    //   console.log('sending message to all clients: ', globalCounter);
+    const interval = setInterval(() => {
+      console.log('sending message to all clients: ', globalCounter);
       res.write(`data: ${globalCounter}\n\n`);
-    // }, 1000);
+    }, 1000);
 
     // req.on('close', () => {
     //   console.log('client closed connection');
